@@ -14,6 +14,7 @@ def test_percentile_approx():
     percentile = df.percentile_approx('z', percentage=99)
     expected_result = 15.1739
     np.testing.assert_almost_equal(percentile, expected_result, decimal=1)
+    breakpoint()
 
     # Test for multiple percentages
     percentiles = df.percentile_approx('x', percentage=[0, 25, 50, 75, 100], percentile_shape=65536)

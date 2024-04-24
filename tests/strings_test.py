@@ -77,7 +77,7 @@ def test_concat():
     ds = ds1.concat(ds2)
     assert len(ds) == len(ds1) + len(ds2)
     assert ds.data_type('names') == pa.string()
-    assert ds.data_type('names') != np.object
+    assert ds.data_type('names') != np.object_
 
 
 def test_string_count_stat():
