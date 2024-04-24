@@ -44,7 +44,7 @@ class ANNOYModel(state.HasState):
     def predict(self, dataframe, n_neighbours=None, search_k=None):
         search_k = search_k or self.search_k
         n_neighbours = n_neighbours or self.n_neighbours
-        result = np.zeros((len(dataframe), n_neighbours), dtype=np.int)
+        result = np.zeros((len(dataframe), n_neighbours), dtype=np.int32)
         for i in range(len(dataframe)):
             result[i] = self.index_builder.get_nns_by_vector(n=n_neighbours, search_k=search_k, vector=dataframe[self.features][i])
         return result

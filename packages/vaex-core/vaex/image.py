@@ -83,11 +83,11 @@ def blend(image_list, blend_mode="multiply"):
     image_list = image_list[::-1]
     rgba_dest = image_list[0] * 1
     if bit8:
-        rgba_dest = (rgba_dest / 255.).astype(np.float)
+        rgba_dest = (rgba_dest / 255.).astype(np.float32)
     for i in range(1, len(image_list)):
         rgba_source = image_list[i]
         if bit8:
-            rgba_source = (rgba_source / 255.).astype(np.float)
+            rgba_source = (rgba_source / 255.).astype(np.float32)
         # assert rgba_source.dtype == image_list[0].dtype, "images have different types: first has %r, %d has %r" % (image_list[0].dtype, i, rgba_source.dtype)
 
         aA = rgba_source[:, :, 3]

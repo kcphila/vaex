@@ -140,7 +140,7 @@ class Hdf5MemoryMapped(DatasetMemoryMapped):
         Optionally, numpy dtypes can be passed, default is floats
         """
 
-        dtypes = dtypes or [np.float] * len(column_names)
+        dtypes = dtypes or [np.float32] * len(column_names)
 
         if N == 0:
             raise ValueError("Cannot export empty table")
