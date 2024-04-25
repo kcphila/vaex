@@ -12,6 +12,8 @@ typedef std::string string;
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
+#include <iostream>
+
 #include "string_utils.hpp"
 
 inline bool _is_null(uint8_t *null_bitmap, size_t i) {

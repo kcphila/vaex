@@ -3,11 +3,12 @@
 # currently experimental, and used for development only, since it makes rebuilding much faster
 
 cmake_minimum_required(VERSION 3.11.0)
-project(hello)
+SET(unofficial-pcre_DIR "build/vcpkg_installed/x64-windows/share/unofficial-pcre")
+project(vaexcore)
 find_package(PythonExtensions REQUIRED)
 find_package(NumPy REQUIRED)
 
-
+find_package(unofficial-pcre REQUIRED)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     SET(CMAKE_CXX_FLAGS --std=c++11)
@@ -39,6 +40,7 @@ unset(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES)
 unset(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
 
 include_directories(/usr/local/include)
+
 # string module
 add_library("superstrings" MODULE
     "src/strings.cpp"
@@ -53,9 +55,9 @@ target_include_directories("superstrings" PUBLIC
 )
 
 
-target_link_directories("superstrings" PUBLIC
-    "${PYTHON_PREFIX}/lib")
-target_link_libraries("superstrings" pcre pcrecpp)
+target_link_directories("superstrings" PUBLIC "${PYTHON_PREFIX}/lib")
+#target_link_libraries("superstrings" PRIVATE pcre pcrecpp)
+target_link_libraries("superstrings" unofficial::pcre::pcre unofficial::pcre::pcrecpp)
 
 # aggregation library
 add_library("superagg" MODULE
@@ -101,7 +103,8 @@ target_include_directories("superutils" PUBLIC
 )
 target_link_directories("superutils" PUBLIC
     "${PYTHON_PREFIX}/lib")
-target_link_libraries("superutils" pcre pcrecpp)
+# target_link_libraries("superutils" pcre pcrecpp)
+target_link_libraries("superutils" unofficial::pcre::pcre unofficial::pcre::pcrecpp)
 
 
 add_compile_definitions(VAEX_USE_TSL)

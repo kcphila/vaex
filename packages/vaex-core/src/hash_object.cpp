@@ -13,6 +13,7 @@ typedef SSIZE_T ssize_t;
 
 namespace py = pybind11;
 
+/*
 namespace std {
     template<>
     struct hash<PyObject*> {
@@ -21,7 +22,7 @@ namespace std {
         }
     };
 }
-
+*/
 namespace vaex {
 
 struct CompareObjects
@@ -51,7 +52,7 @@ public:
         for(auto el : map) {
             PyObject* key = el.first;
             Py_DECREF(key);
-        }    
+        }
     }
     size_t bytes_used() const {
         int64_t buffer_size = 0;
